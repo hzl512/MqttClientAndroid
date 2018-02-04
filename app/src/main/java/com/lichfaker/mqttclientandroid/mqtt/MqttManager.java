@@ -29,7 +29,7 @@ public class MqttManager {
     private boolean clean = true;
 
     private MqttManager() {
-        mCallback = new MqttCallbackBus();
+//        mCallback = new MqttCallbackBus();
     }
 
     public static MqttManager getInstance() {
@@ -37,6 +37,10 @@ public class MqttManager {
             mInstance = new MqttManager();
         }
         return mInstance;
+    }
+
+    public void setOnMqttCallback(MqttCallback mCallback){
+        this.mCallback=mCallback;
     }
 
     /**
@@ -82,9 +86,9 @@ public class MqttManager {
 
             // Construct an MQTT blocking mode client
             client = new MqttClient(brokerUrl, clientId, dataStore);
-
             // Set this wrapper as the callback handler
             client.setCallback(mCallback);
+
             flag = doConnect();
         } catch (MqttException e) {
             Logger.e(e.getMessage());
@@ -124,13 +128,15 @@ public class MqttManager {
         boolean flag = false;
 
         if (client != null && client.isConnected()) {
-
             Logger.d("Publishing to topic \"" + topicName + "\" qos " + qos);
-
             // Create and configure a message
-            MqttMessage message = new MqttMessage(payload);
+            MqttMessage message;
+            if (payload==null){
+                message = new MqttMessage();
+            }else {
+                message = new MqttMessage(payload);
+            }
             message.setQos(qos);
-
             // Send the message to the server, control is not returned until
             // it has been delivered to the server meeting the specified
             // quality of service.
@@ -138,11 +144,8 @@ public class MqttManager {
                 client.publish(topicName, message);
                 flag = true;
             } catch (MqttException e) {
-
             }
-
         }
-
         return flag;
     }
 

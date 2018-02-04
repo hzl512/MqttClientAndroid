@@ -7,6 +7,7 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.greenrobot.eventbus.EventBus;
 
+
 /**
  * 使用EventBus分发事件
  *
@@ -18,6 +19,8 @@ public class MqttCallbackBus implements MqttCallback {
     @Override
     public void connectionLost(Throwable cause) {
         Logger.e(cause.getMessage());
+        EventBus.getDefault().post("");
+
     }
 
     @Override

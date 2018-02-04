@@ -19,6 +19,27 @@
             </intent-filter>
         </activity>
 
+        <!--<meta-data-->
+            <!--android:name="com.chinamobile.iot.onenet.APP-KEY"-->
+            <!--android:value="MaTzjhme=fB8sT=oICfN2DbeAhI="/>-->
+
+        <!--&lt;!&ndash; OneNET server host &ndash;&gt;-->
+        <!--<meta-data-->
+            <!--android:name="com.chinamobile.iot.onenet.HOST"-->
+            <!--android:value="api.js.cmcconenet.com"/>-->
+
+        <!--&lt;!&ndash;android:value="api.heclouds.com"&ndash;&gt;-->
+
+        <meta-data
+            android:name="com.chinamobile.iot.onenet.APP-KEY"
+            android:value="FDRC75EIuLt1baJCmi2fY6jdBjA=" />
+        <!-- OneNET server host -->
+        <meta-data
+            android:name="com.chinamobile.iot.onenet.HOST"
+            android:value="api.fj.cmcconenet.com" />
+        <!-- android:value="api.heclouds.com" -->
+
     </application>
+
 
 </manifest>
